@@ -31,9 +31,11 @@
 ## Organizational Units
 - IT Department
 - HR Department
+- Student
+
 
 ## Users Created
-- Anthony.Nwekeze (IT Department OU)
+- Created 6 users in total and placing 2 in each IT Department, HR Department and Student OU.
 
 ## Client Machine
 - CLIENT01 joined to Nwekeze.Local domain.
@@ -45,3 +47,24 @@
 - Computer must be renamed to CLIENT01 before domain join for clean AD records.
 - Joining the Domain requires the Domain Controller to check and authorize your account.
 - Authentication flows from CLIENT01 -> DC -> approval, the workstation never decides on its own.
+
+
+## Group Policy Objects (5/12/26)
+
+### What is Group Policy
+Group Policy lets you push settings and rules from the Domain Controller to every machine and user in the domain automatically. No touching each machine individually.
+
+### GPO 1 — IT Department Policy
+- Linked to: IT Department OU
+- Setting: Screen lock timeout after 5 minutes of inactivity
+- Why: Forces machines to lock automatically for security
+
+### GPO 2 — Wallpaper Policy
+- Linked to: Students OU
+- Setting: Forces a specific desktop wallpaper for all student accounts
+- Why: Practiced applying different policies to different OUs
+
+### How I verified it worked
+- Ran gpupdate /force on CLIENT01
+- Ran gpresult /r to confirm policies applied
+- Logged in as a student account and confirmed wallpaper changed
